@@ -1,0 +1,168 @@
+Microsoft Windows [versão 10.0.19042.906]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Windows\system32>cd\
+
+C:\>cd arquivos e programas\MongoDB\server\4.4\bin
+O sistema não pode encontrar o caminho especificado.
+
+C:\>cd arquivos de programas\MongoDB\server\4.4\bin
+
+C:\Arquivos de Programas\MongoDB\Server\4.4\bin>mongo
+MongoDB shell version v4.4.4
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("39aa0fb1-4dec-49b3-bf43-f6f584c5017d") }
+MongoDB server version: 4.4.4
+---
+The server generated these startup warnings when booting:
+        2021-04-13T15:06:43.966-03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+Free Monitoring URL:
+https://cloud.mongodb.com/freemonitoring/cluster/BLOXLJUABRMX3636IQMNDTP2NTGFVK7U
+---
+> show dbs
+admin    0.000GB
+aula     0.000GB
+config   0.000GB
+desafio  0.001GB
+local    0.000GB
+> use desafio
+switched to db desafio
+> show collections
+aeronave
+ocorrencia
+ocorrencia_tipo
+> db.ocorrencia.find().count();
+5242
+>           db.ocorrencia_tipo.find().count();
+5337
+>           db.aeronave.find().count();
+4094
+>  db.aeronave.find({$or: [{modelo: "AB-115"}, {tipo_veiculo: "AVIAO"}]}).limit(5).pretty()
+{
+        "_id" : ObjectId("6075f66626672e32547c5c2d"),
+        "id_ocorrencia_a" : 39115,
+        "matricula" : "PTNQX",
+        "operador_categoria" : "***",
+        "tipo_veiculo" : "AVIAO",
+        "fabricante" : "NEIVA INDUSTRIA AERONAUTICA",
+        "modelo" : "EMB-711A",
+        "motor_tipo" : "PISTAO",
+        "motor_quantidade" : "MONOMOTOR",
+        "assentos" : 4,
+        "ano_fabricacao" : 1979,
+        "pais_fabricante" : "BRASIL",
+        "registro_segmento" : "PARTICULAR",
+        "voo_origem" : "BRIGADEIRO ARARIPE MACEDO",
+        "voo_destino" : "CORRENTINA",
+        "fase_operacao" : "DECOLAGEM"
+}
+{
+        "_id" : ObjectId("6075f66626672e32547c5c2e"),
+        "id_ocorrencia_a" : 39155,
+        "matricula" : "PTLVI",
+        "operador_categoria" : "***",
+        "tipo_veiculo" : "AVIAO",
+        "fabricante" : "BEECH AIRCRAFT",
+        "modelo" : "C90",
+        "motor_tipo" : "TURBOELICE",
+        "motor_quantidade" : "BIMOTOR",
+        "assentos" : 8,
+        "ano_fabricacao" : 1979,
+        "pais_fabricante" : "BRASIL",
+        "registro_segmento" : "PARTICULAR",
+        "voo_origem" : "FORA DE AERODROMO",
+        "voo_destino" : "FORA DE AERODROMO",
+        "fase_operacao" : "DECOLAGEM"
+}
+{
+        "_id" : ObjectId("6075f66626672e32547c5c2f"),
+        "id_ocorrencia_a" : 39156,
+        "matricula" : "PPPTO",
+        "operador_categoria" : "***",
+        "tipo_veiculo" : "AVIAO",
+        "fabricante" : "AEROSPATIALE AND ALENIA",
+        "modelo" : "ATR-72-212A",
+        "motor_tipo" : "TURBOELICE",
+        "motor_quantidade" : "BIMOTOR",
+        "assentos" : 73,
+        "ano_fabricacao" : 2008,
+        "pais_fabricante" : "BRASIL",
+        "registro_segmento" : "REGULAR",
+        "voo_origem" : "AFONSO PENA",
+        "voo_destino" : "ADALBERTO MENDES DA SILVA",
+        "fase_operacao" : "ARREMETIDA NO AR"
+}
+{
+        "_id" : ObjectId("6075f66626672e32547c5c30"),
+        "id_ocorrencia_a" : 39158,
+        "matricula" : "PRLGJ",
+        "operador_categoria" : "REGULAR",
+        "tipo_veiculo" : "AVIAO",
+        "fabricante" : "BOEING COMPANY",
+        "modelo" : "757-225",
+        "motor_tipo" : "JATO",
+        "motor_quantidade" : "BIMOTOR",
+        "assentos" : 5,
+        "ano_fabricacao" : 1984,
+        "pais_fabricante" : "BRASIL",
+        "registro_segmento" : "REGULAR",
+        "voo_origem" : "FORA DE AERODROMO",
+        "voo_destino" : "FORA DE AERODROMO",
+        "fase_operacao" : "SUBIDA"
+}
+{
+        "_id" : ObjectId("6075f66626672e32547c5c31"),
+        "id_ocorrencia_a" : 39176,
+        "matricula" : "PRMAA",
+        "operador_categoria" : "REGULAR",
+        "tipo_veiculo" : "AVIAO",
+        "fabricante" : "AIRBUS INDUSTRIE",
+        "modelo" : "A320-232",
+        "motor_tipo" : "JATO",
+        "motor_quantidade" : "BIMOTOR",
+        "assentos" : 184,
+        "ano_fabricacao" : 2001,
+        "pais_fabricante" : "BRASIL",
+        "registro_segmento" : "REGULAR",
+        "voo_origem" : "FORA DE AERODROMO",
+        "voo_destino" : "FORA DE AERODROMO",
+        "fase_operacao" : "SUBIDA"
+}
+>  db.aeronave.aggregate({$group: {'_id': '$tipo_veiculo', 'count': {$sum: 1}}})
+{ "_id" : "***", "count" : 7 }
+{ "_id" : "DIRIGIVEL", "count" : 2 }
+{ "_id" : "TRIKE", "count" : 2 }
+{ "_id" : "AVIAO", "count" : 3335 }
+{ "_id" : "HELICOPTERO", "count" : 497 }
+{ "_id" : "ULTRALEVE", "count" : 231 }
+{ "_id" : "PLANADOR", "count" : 11 }
+{ "_id" : "ANFIBIO", "count" : 9 }
+>  ISODate ()
+ISODate("2021-04-13T21:03:35.894Z")
+> db.ocorrencia.find({num_recomendacoes: {$lte: 2}}).limit(10);
+{ "_id" : ObjectId("6076010449fb880e0478ac9e"), "id_ocorrencia" : 39115, "classificacao" : "ACIDENTE", "cidade" : "CORRENTINA", "uf" : "BA", "pais" : "BRASIL", "data" : ISODate("2010-02-07T17:40:00Z"), "num_recomendacoes" : 2 }
+{ "_id" : ObjectId("6076010449fb880e0478ac9f"), "id_ocorrencia" : 39155, "classificacao" : "INCIDENTE", "cidade" : "BELO HORIZONTE", "uf" : "MG", "pais" : "BRASIL", "data" : ISODate("2010-02-05T12:55:00Z"), "num_recomendacoes" : 0 }
+{ "_id" : ObjectId("6076010449fb880e0478aca0"), "id_ocorrencia" : 39156, "classificacao" : "INCIDENTE GRAVE", "cidade" : "CASCAVEL", "uf" : "PR", "pais" : "BRASIL", "data" : ISODate("2010-01-10T23:15:00Z"), "num_recomendacoes" : 2 }
+{ "_id" : ObjectId("6076010449fb880e0478aca1"), "id_ocorrencia" : 39158, "classificacao" : "INCIDENTE", "cidade" : "BELEM", "uf" : "PA", "pais" : "BRASIL", "data" : ISODate("2010-01-28T16:00:00Z"), "num_recomendacoes" : 0 }
+{ "_id" : ObjectId("6076010449fb880e0478aca2"), "id_ocorrencia" : 39176, "classificacao" : "INCIDENTE", "cidade" : "SAO LUIS", "uf" : "MA", "pais" : "BRASIL", "data" : ISODate("2010-02-05T09:30:00Z"), "num_recomendacoes" : 0 }
+{ "_id" : ObjectId("6076010449fb880e0478aca3"), "id_ocorrencia" : 39178, "classificacao" : "INCIDENTE", "cidade" : "CAMPINAS", "uf" : "SP", "pais" : "BRASIL", "data" : ISODate("2010-02-08T12:33:00Z"), "num_recomendacoes" : 0 }
+{ "_id" : ObjectId("6076010449fb880e0478aca6"), "id_ocorrencia" : 39295, "classificacao" : "ACIDENTE", "cidade" : "RIO DE JANEIRO", "uf" : "RJ", "pais" : "BRASIL", "data" : ISODate("2010-02-06T21:09:00Z"), "num_recomendacoes" : 0 }
+{ "_id" : ObjectId("6076010449fb880e0478aca7"), "id_ocorrencia" : 39315, "classificacao" : "ACIDENTE", "cidade" : "CANUTAMA", "uf" : "AM", "pais" : "BRASIL", "data" : ISODate("2010-01-15T21:22:00Z"), "num_recomendacoes" : 0 }
+{ "_id" : ObjectId("6076010449fb880e0478aca8"), "id_ocorrencia" : 39316, "classificacao" : "ACIDENTE", "cidade" : "RIO DO OESTE", "uf" : "SC", "pais" : "BRASIL", "data" : ISODate("2010-02-04T17:55:00Z"), "num_recomendacoes" : 2 }
+{ "_id" : ObjectId("6076010449fb880e0478aca9"), "id_ocorrencia" : 39317, "classificacao" : "ACIDENTE", "cidade" : "RIO VERDE", "uf" : "GO", "pais" : "BRASIL", "data" : ISODate("2010-02-24T13:00:00Z"), "num_recomendacoes" : 0 }
+> db.ocorrencia.aggregate([{$match: {num_recomendacoes: {$lte: 2}}}, {$group: {'_id': '$uf', 'count': {$sum: 1}}}, {$sort: {'count': -1}}, {$limit: 10}]);
+{ "_id" : "SP", "count" : 1208 }
+{ "_id" : "MG", "count" : 472 }
+{ "_id" : "RJ", "count" : 465 }
+{ "_id" : "PR", "count" : 425 }
+{ "_id" : "RS", "count" : 315 }
+{ "_id" : "GO", "count" : 272 }
+{ "_id" : "MT", "count" : 250 }
+{ "_id" : "PA", "count" : 242 }
+{ "_id" : "AM", "count" : 204 }
+{ "_id" : "BA", "count" : 182 }
+> db.ocorrencia.aggregate( {$group: {'_id': null, 'media': {$avg: '$num_recomendacoes'}}})
+{ "_id" : null, "media" : 0.32048836322014496 }
+>
